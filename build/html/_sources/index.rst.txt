@@ -3,13 +3,17 @@ Welcome to TI-Fi's documentation!
 =================================
 **TI-Fi**  is an IoT development system that integrates hardware and software to allow for rapid prototyping
 
+
+.. image:: imgs/sys-block.png
+
 .. toctree::
    :caption: Contents:
    
-   startup
-   wifiConnect
+   Startup
+   Peripherals
+   WifiConnect
    API
-   usage
+   FAQ
    
 
 .. note::

@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'TI-Fi'
-copyright = '2022, Abdullah Alawfi'
+copyright = '2022, TI-Fi'
 author = 'Abdullah Alawfi'
 release = '1.0'
 
