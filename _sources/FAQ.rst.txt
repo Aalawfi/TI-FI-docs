@@ -1,0 +1,15 @@
+###
+FAQ
+###
+
+**Why am I getting HTTP response with status code 400 Bad Request?**
+
+The server cannot process the request due to a client error (malformed syntax, wrong URL, etc.)
+
+**Why am I getting HTTP response with status code 405 Method Not Allowed?**
+
+The requested URL does not match the request type. For example you cannot make a GET request to a POST endpoint.
+
+.. note::
+
+   This project is under active development.

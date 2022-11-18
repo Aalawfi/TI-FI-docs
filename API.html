@@ -20,8 +20,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="usage" href="usage.html" />
-    <link rel="prev" title="wifiConnect" href="wifiConnect.html" /> 
+    <link rel="next" title="FAQ" href="FAQ.html" />
+    <link rel="prev" title="Wifi Connectivity" href="WifiConnect.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,10 +41,15 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="startup.html">startup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wifiConnect.html">wifiConnect</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Startup.html">Startup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WifiConnect.html">Wifi Connectivity</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#get-the-most-recent-data">Get The Most Recent Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#post-new-data">Post New Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-the-entire-device-data">Get The Entire Device Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="FAQ.html">FAQ</a></li>
 </ul>
 
         </div>
@@ -73,20 +78,112 @@
              
   <section id="api">
 <h1>API<a class="headerlink" href="#api" title="Permalink to this heading"></a></h1>
+<section id="get-the-most-recent-data">
+<h2>Get The Most Recent Data<a class="headerlink" href="#get-the-most-recent-data" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">http://www.ti-fi-uofsc.com/$username/api/$devicename/get-data/</span></span></dt>
+<dd><p>Fetches the latest data object that was stored on the server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>username</strong> – The username of the owner.</p></li>
+<li><p><strong>devicename</strong> – The name of the destination device.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>HTTP Response 200.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w">    </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w"></span>
+<span class="w">     </span><span class="s2">&quot;Temperature&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="s2">&quot;Humidity&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="s2">&quot;Movement&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="s2">&quot;Gas&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="s2">&quot;Generic&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="s2">&quot;Timestamp&quot;</span><span class="o">:</span><span class="s2">&quot;&lt;ISO8601&gt;&quot;</span><span class="w"></span>
+<span class="w"> </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="post-new-data">
+<h2>Post New Data<a class="headerlink" href="#post-new-data" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">http://www.ti-fi-uofsc.com/$username/api/$devicename/post-data/</span></span></dt>
+<dd><p>Creates a new data object and stores it in the database. The content of the data
+packet must follow specific format</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>username</strong> – The username of the owner.</p></li>
+<li><p><strong>devicename</strong> – The name of the destination device.</p></li>
+<li><p><strong>body</strong> (<em>JSON</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;data&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;Temperature&quot;</span><span class="o">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;Humidity&quot;</span><span class="o">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;Movement&quot;</span><span class="o">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;Gas&quot;</span><span class="o">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;Generic&quot;</span><span class="o">:</span><span class="mf">0.0</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;timestamp&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&lt;ISO8601&gt;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>HTTP Response 201.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="get-the-entire-device-data">
+<h2>Get The Entire Device Data<a class="headerlink" href="#get-the-entire-device-data" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">http://www.ti-fi-uofsc.com/$username/api/$devicename/get-all-data/</span></span></dt>
+<dd><p>Fetch the entire dataset stored under a given device</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>username</strong> – The username of the owner.</p></li>
+<li><p><strong>devicename</strong> – The name of the destination device.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>HTTP Response 200.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This project is under active development.</p>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="wifiConnect.html" class="btn btn-neutral float-left" title="wifiConnect" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="usage.html" class="btn btn-neutral float-right" title="usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="WifiConnect.html" class="btn btn-neutral float-left" title="Wifi Connectivity" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="FAQ.html" class="btn btn-neutral float-right" title="FAQ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Abdullah Alawfi.</p>
+    <p>&#169; Copyright 2022, TI-Fi.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
