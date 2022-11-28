@@ -1,3 +1,69 @@
 ###
 API
 ###
+
+Get The Most Recent Data
+------------------------
+.. py:function:: http://www.ti-fi-uofsc.com/$username/api/$devicename/get-data/
+
+    Fetches the latest data object that was stored on the server
+
+    :param username: The username of the owner.
+    :param devicename: The name of the destination device.
+        
+    :return: HTTP Response 200.
+
+        .. code-block:: javascript
+
+           {    "id": 0.0
+                "Temperature": 0.0,
+                "Humidity": 0.0,
+                "Movement": 0.0,
+                "Gas": 0.0,
+                "Generic": 0.0,
+                "Timestamp":"<ISO8601>"
+            }
+
+Post New Data
+-------------
+.. py:function:: http://www.ti-fi-uofsc.com/$username/api/$devicename/post-data/
+
+    Creates a new data object and stores it in the database. The content of the data 
+    packet must follow specific format 
+
+    :param username: The username of the owner.
+    :param devicename: The name of the destination device.
+    :param JSON body: 
+
+    .. code-block:: javascript
+
+        {
+            "data": {
+                "Temperature":0.0,
+                "Humidity":0.0,
+                "Movement":0.0,
+                "Gas":0.0,
+                "Generic":0.0
+                    },
+            "timestamp": "<ISO8601>",
+            ...
+        }
+        
+    :return: HTTP Response 201.
+
+Get The Entire Device Data 
+--------------------------
+.. py:function:: http://www.ti-fi-uofsc.com/$username/api/$devicename/get-all-data/
+
+    Fetch the entire dataset stored under a given device
+    
+    :param username: The username of the owner.
+    :param devicename: The name of the destination device.
+
+    
+    :return: HTTP Response 200.
+
+
+.. note::
+
+   This project is under active development.

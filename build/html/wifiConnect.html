@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>wifiConnect &mdash; TI-Fi 1.0 documentation</title>
+  <title>Wifi Connectivity &mdash; TI-Fi 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="API" href="API.html" />
-    <link rel="prev" title="startup" href="startup.html" /> 
+    <link rel="prev" title="Peripherals" href="Peripherals.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,10 +41,11 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="startup.html">startup</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">wifiConnect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Startup.html">Startup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Peripherals.html">Peripherals</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Wifi Connectivity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="API.html">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FAQ.html">FAQ</a></li>
 </ul>
 
         </div>
@@ -61,9 +62,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">wifiConnect</li>
+      <li class="breadcrumb-item active">Wifi Connectivity</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/wifiConnect.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/WifiConnect.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -71,22 +72,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="wificonnect">
-<h1>wifiConnect<a class="headerlink" href="#wificonnect" title="Permalink to this heading"></a></h1>
+  <section id="wifi-connectivity">
+<h1>Wifi Connectivity<a class="headerlink" href="#wifi-connectivity" title="Permalink to this heading"></a></h1>
+<p>The wireless connectivity subsystem is responsible for the wireless data transmission. This subsystem  connects  the  host  (microcontroller)  to  the  cloud  server  (website)  to  enable  datatransmission  using  radio  frequency.
+To  establish  the  wireless  connection,  the  microcontroller should be provided with a radio module (antenna) that could send and receive data using one of the data transmission protocols within the frequency range of the wireless protocol.
+One of the most common wireless protocols is IEEE 802.11, which is also known as Wi-Fi. Most of the 802.11 techniques use a short-range radius to transmit signals in the 2.4-GHz ISM (Information system management) frequency band.
+This subsystem  interacts  wirelessly  with  the  webserver  to transmitthe  data  collected from  the  daughterboard  on  the  host. The data  is  transferred  on  the  network  using  the  http application layer protocol. In the http protocol,the hostin its role of client, sends a request to a Web server. The server then returns a response to that client. A client may take further action basedon the server’s response, but http considers that action to be an entirely new exchange. The new exchange, like every http exchange, begins with a client’s request.</p>
+<img alt="_images/AP-prov.png" src="_images/AP-prov.png" />
+<p>Wi-Fi provisioning is the process of connecting a new Wi-Fi device (station) to a Wi-Fi network. The provisioning process involves loading the station with the network name (often referred to as SSID) and its security credentials [1].
+Provisioning in Access Point (AP) mode is the most common provisioning method today for headless devices. In AP mode the un-provisioned device wakeup initially as an AP with an SSID defined by the equipment manufacturer.
+In this mode, the un-provisioned device also includes a secured embedded web server as figure 3 demonstrates. After the user connects his smartphone to the un-provisioned device’s AP, he opens the smart phone’s web browser and browses into the device’s web site via the local URL or IP address of the chip web module [1].
+In the embedded web site, the user types the home network name and password. The device stores the network credentials in the memory and then it switches from AP mode to Station mode in order to connect to the home network using the stored network credentials.</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="startup.html" class="btn btn-neutral float-left" title="startup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Peripherals.html" class="btn btn-neutral float-left" title="Peripherals" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="API.html" class="btn btn-neutral float-right" title="API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Abdullah Alawfi.</p>
+    <p>&#169; Copyright 2022, TI-Fi.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
