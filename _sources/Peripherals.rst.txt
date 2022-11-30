@@ -15,3 +15,53 @@ Main board
 The wireless connectivity subsystem is responsible for the wireless data transmission. This subsystem connects the host (microcontroller) to the cloud server (website) to enable data transmission using radio frequency. To establish the wireless connection, the microcontroller should be provided with a radio module (antenna) that could send and receive data using one of the data transmission protocols within the frequency range of the wireless protocol. One of the most common wireless protocols is IEEE 802.11, which is also known as Wi-Fi. Most of the 802.11 techniques use a short-range radius to transmit signals in the 2.4-GHz ISM (Information system management) frequency band.
 This subsystem interacts wirelessly with the webserver to transmit the data collected from the daughterboard on the host. The data is transferred on the network using the http application layer protocol. In the http protocol, the host in its role of client, sends a request to a Web server. The server then returns a response to that client. A client may take further action based on the server’s response, but http considers that action to be an entirely
 
+|CC3220SF Datasheet: https://www.ti.com/lit/ds/symlink/cc3220s.pdf?ts=1647453671346&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FCC3220S
+
+PIR
+---
+The Passive Infrared Sensor also known as the PIR, provides the IoT with motion sensing capabilities. Here is information regarding the PIR's operation:
+
+| Voltage Input: 5V
+| Digital Output: 3.3V
+| Response Time: 1 - 1.15 seconds
+| Datasheet: https://cdn-learn.adafruit.com/downloads/pdf/pir-passive-infrared-proximity-motion-sensor.pdf
+
+LDR
+---
+The Light-Dependant Resistor or LDR for short, provides the IoT with light detecting capabilities. The LDR uses a driver that changes the analog input into a digital output that reflects the current resistances of the LDR. Here is information regarding the LDR:
+
+| Voltage Input: 3.3V
+| Voltage Output Range: 0.143V - 3.21V
+| Ambient Light Output: Approximately 3000 (in regards to a light room), a higher value represents a darker room
+| Datasheet: https://s3.amazonaws.com/snapeda/datasheet/NSL-5162_Silonex.pdf
+
+VOC
+---
+The Volatile Organic Compound Sensor also referred to as the VOC provides the IOT with air quality sensing capabilities. This component is a breakout board that requires a driver to provide a sensible output. The VOC uses I2C to interface with the Launchpad and the humidity/temperature sensor to provide a quality reading. Here is information regarding the VOC:
+
+| Input Voltage: 3.3V
+| Output Range: 0 - 500
+| Great Air Quaility: 0 - 99
+| Good Air Quality: 100-130
+| Wary Air Quality: 130+
+| Datasheet: https://cdn-learn.adafruit.com/downloads/pdf/adafruit-sgp40.pdf
+
+Humidity/temperature
+--------------------
+The Humidity/Temperature sensor provides the IoT with comfort level sensings. This component is similar to the VOC, it is a breakout board and also uses I2C to interface with the Launchpad. Using I2C to also interface this component to the VOC helps provide a quality response from the VOC. Here is information regarding the Humidity/Temperature Sensor:
+
+| Input Voltage: 3.3V
+| Output Range: 0 - 100%, 0% means very little to no moisture in the air
+| Temperature Range(C): 0 - 75 degrees Celsius 
+| Temperature Range(F): 32 -  167 degrees Fahrenheit
+| Datasheet: https://cdn-learn.adafruit.com/downloads/pdf/adafruit-sht40-temperature-humidity-sensor.pdf
+
+Generic
+-------
+This generic sensor is a STEMMA QT Connector. This would allow a consumer to add their own desired sensor onto the IoT. Here is informatioin regarding the STEMMA QT Connector:
+
+| 4-pins
+| Black Wired Pin: Ground (GND)
+| Red Wired Pin: Voltage Supply (Vcc)
+| Blue Wired Pin: Serial Data (SDA)
+| Yellow Wired Pin: Serial Clock(SCL)

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Startup &mdash; TI-Fi 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Peripherals" href="Peripherals.html" />
+    <link rel="prev" title="Welcome to TI-Fi’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> TI-Fi
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Startup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Peripherals.html">Peripherals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WifiConnect.html">Wifi Connectivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FAQ.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TI-Fi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Startup</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Startup.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="startup">
+<h1>Startup<a class="headerlink" href="#startup" title="Permalink to this heading"></a></h1>
+<div class="line-block">
+<div class="line"><strong>Power up sequence</strong>:</div>
+</div>
+<p>The power-up sequence for the hardware is simple from the user’s perspective. Before
+any power is applied to either board, it is important that the connection between the
+daughterboard and the main board is securely made. The header pin connectors are not keyed
+in any way, so it is very important to double-check the orientation of the daughterboard as it
+plugs into the main board – visual cues will be included on the top silkscreen layer of the
+daughterboard to reduce the risk of misalignment. The user will also need to plug the PIR sensor
+into its corresponding connector on the daughterboard and the additional sensor to the STEMMA
+QT port if it is being used. It is never okay to hot plug any part of the system.</p>
+<p>Once the user ensures the daughterboard is securely mated to the mainboard and the PIR
+sensor and generic sensor (if being used) are connected, they will then connect the main board
+to 5V power with the micro USB port. This power can be sourced from a computer but will likely
+come from a 5V wall adapter when deployed. Any source is fine provided it adheres to the USB
+specification for power delivery (5 Vdc, 2.5 W max).
+When 5V is supplied to the main board, its buck regulator will begin ramping up its output
+to produce a stable 3.3Vdc, which all logic runs from. The regulator begins switching after 50 μs
+and output voltage rises at about 25 mV / μs, yielding an approximate turn-on time of 0.2 ms.
+Because our system’s operation is all derived from the 3.3V supply, there is no need to sequence
+delivery of varying voltages.</p>
+<p>After the 3.3V supply has stabilized, the digital ICs each have their own respective
+power-up times coming out of a hard reset. For the VOC sensor, the SGP40, this time is typically
+0.4 ms, with a max of 0.6 ms. For the humidity sensor, SHT40, this time is a max of 1 ms. The
+other ICs all have their own turn-on times which are on the same order of magnitude except for
+the microcontroller, which has a much longer power-up sequence due to its complexity. The
+hardware wake-up time alone is typically 25 ms, followed by a 17 ms hardware initialization, and
+then somewhere on the order of a 1/10th of a second to load the application code. This is good
+because the total time to full operation is barely perceptible, and there is no need to add software
+waits for the peripherals to finish initializing before communicating with them because the
+microcontroller takes far longer to initialize anyway.
+For powering down, the only action required is removing the micro USB cable. This should
+be done before any disassembly. It is always crucial that the USB power is the last thing added
+and the first thing removed when interacting with the hardware.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This project is under active development.</p>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to TI-Fi’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Peripherals.html" class="btn btn-neutral float-right" title="Peripherals" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, TI-Fi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

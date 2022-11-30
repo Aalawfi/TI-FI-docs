@@ -19,7 +19,9 @@
         <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Wifi Connectivity" href="WifiConnect.html" />
+    <link rel="prev" title="Startup" href="Startup.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -38,9 +40,18 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="Startup.html">Startup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Peripherals.html">Peripherals</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Peripherals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#daughterboard">Daughterboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#main-board">Main board</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pir">PIR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ldr">LDR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#voc">VOC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#humidity-temperature">Humidity/temperature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generic">Generic</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="WifiConnect.html">Wifi Connectivity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="API.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FAQ.html">FAQ</a></li>
@@ -82,13 +93,71 @@ Because the VOC and humidity sensors are current-generation environmental sensor
 <h2>Main board<a class="headerlink" href="#main-board" title="Permalink to this heading"></a></h2>
 <p>The wireless connectivity subsystem is responsible for the wireless data transmission. This subsystem connects the host (microcontroller) to the cloud server (website) to enable data transmission using radio frequency. To establish the wireless connection, the microcontroller should be provided with a radio module (antenna) that could send and receive data using one of the data transmission protocols within the frequency range of the wireless protocol. One of the most common wireless protocols is IEEE 802.11, which is also known as Wi-Fi. Most of the 802.11 techniques use a short-range radius to transmit signals in the 2.4-GHz ISM (Information system management) frequency band.
 This subsystem interacts wirelessly with the webserver to transmit the data collected from the daughterboard on the host. The data is transferred on the network using the http application layer protocol. In the http protocol, the host in its role of client, sends a request to a Web server. The server then returns a response to that client. A client may take further action based on the server’s response, but http considers that action to be an entirely</p>
+<p><a href="#id1"><span class="problematic" id="id2">|</span></a>CC3220SF Datasheet: <a class="reference external" href="https://www.ti.com/lit/ds/symlink/cc3220s.pdf?ts=1647453671346&amp;ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FCC3220S">https://www.ti.com/lit/ds/symlink/cc3220s.pdf?ts=1647453671346&amp;ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FCC3220S</a></p>
+</section>
+<section id="pir">
+<h2>PIR<a class="headerlink" href="#pir" title="Permalink to this heading"></a></h2>
+<p>The Passive Infrared Sensor also known as the PIR, provides the IoT with motion sensing capabilities. Here is information regarding the PIR’s operation:</p>
+<div class="line-block">
+<div class="line">Voltage Input: 5V</div>
+<div class="line">Digital Output: 3.3V</div>
+<div class="line">Response Time: 1 - 1.15 seconds</div>
+<div class="line">Datasheet: <a class="reference external" href="https://cdn-learn.adafruit.com/downloads/pdf/pir-passive-infrared-proximity-motion-sensor.pdf">https://cdn-learn.adafruit.com/downloads/pdf/pir-passive-infrared-proximity-motion-sensor.pdf</a></div>
+</div>
+</section>
+<section id="ldr">
+<h2>LDR<a class="headerlink" href="#ldr" title="Permalink to this heading"></a></h2>
+<p>The Light-Dependant Resistor or LDR for short, provides the IoT with light detecting capabilities. The LDR uses a driver that changes the analog input into a digital output that reflects the current resistances of the LDR. Here is information regarding the LDR:</p>
+<div class="line-block">
+<div class="line">Voltage Input: 3.3V</div>
+<div class="line">Voltage Output Range: 0.143V - 3.21V</div>
+<div class="line">Ambient Light Output: Approximately 3000 (in regards to a light room), a higher value represents a darker room</div>
+<div class="line">Datasheet: <a class="reference external" href="https://s3.amazonaws.com/snapeda/datasheet/NSL-5162_Silonex.pdf">https://s3.amazonaws.com/snapeda/datasheet/NSL-5162_Silonex.pdf</a></div>
+</div>
+</section>
+<section id="voc">
+<h2>VOC<a class="headerlink" href="#voc" title="Permalink to this heading"></a></h2>
+<p>The Volatile Organic Compound Sensor also referred to as the VOC provides the IOT with air quality sensing capabilities. This component is a breakout board that requires a driver to provide a sensible output. The VOC uses I2C to interface with the Launchpad and the humidity/temperature sensor to provide a quality reading. Here is information regarding the VOC:</p>
+<div class="line-block">
+<div class="line">Input Voltage: 3.3V</div>
+<div class="line">Output Range: 0 - 500</div>
+<div class="line">Great Air Quaility: 0 - 99</div>
+<div class="line">Good Air Quality: 100-130</div>
+<div class="line">Wary Air Quality: 130+</div>
+<div class="line">Datasheet: <a class="reference external" href="https://cdn-learn.adafruit.com/downloads/pdf/adafruit-sgp40.pdf">https://cdn-learn.adafruit.com/downloads/pdf/adafruit-sgp40.pdf</a></div>
+</div>
+</section>
+<section id="humidity-temperature">
+<h2>Humidity/temperature<a class="headerlink" href="#humidity-temperature" title="Permalink to this heading"></a></h2>
+<p>The Humidity/Temperature sensor provides the IoT with comfort level sensings. This component is similar to the VOC, it is a breakout board and also uses I2C to interface with the Launchpad. Using I2C to also interface this component to the VOC helps provide a quality response from the VOC. Here is information regarding the Humidity/Temperature Sensor:</p>
+<div class="line-block">
+<div class="line">Input Voltage: 3.3V</div>
+<div class="line">Output Range: 0 - 100%, 0% means very little to no moisture in the air</div>
+<div class="line">Temperature Range(C): 0 - 75 degrees Celsius</div>
+<div class="line">Temperature Range(F): 32 -  167 degrees Fahrenheit</div>
+<div class="line">Datasheet: <a class="reference external" href="https://cdn-learn.adafruit.com/downloads/pdf/adafruit-sht40-temperature-humidity-sensor.pdf">https://cdn-learn.adafruit.com/downloads/pdf/adafruit-sht40-temperature-humidity-sensor.pdf</a></div>
+</div>
+</section>
+<section id="generic">
+<h2>Generic<a class="headerlink" href="#generic" title="Permalink to this heading"></a></h2>
+<p>This generic sensor is a STEMMA QT Connector. This would allow a consumer to add their own desired sensor onto the IoT. Here is informatioin regarding the STEMMA QT Connector:</p>
+<div class="line-block">
+<div class="line">4-pins</div>
+<div class="line">Black Wired Pin: Ground (GND)</div>
+<div class="line">Red Wired Pin: Voltage Supply (Vcc)</div>
+<div class="line">Blue Wired Pin: Serial Data (SDA)</div>
+<div class="line">Yellow Wired Pin: Serial Clock(SCL)</div>
+</div>
 </section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Startup.html" class="btn btn-neutral float-left" title="Startup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="WifiConnect.html" class="btn btn-neutral float-right" title="Wifi Connectivity" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
