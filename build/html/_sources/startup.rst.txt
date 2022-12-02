@@ -3,11 +3,11 @@ Startup
 #######
 
 | **Power up sequence**:
-| The power-up sequence for the hardware is simple from the user’s perspective. Before
+| The power-up sequence for the hardware is simple from the user's perspective. Before
 | any power is applied to either board, it is important that the connection between the
 | daughterboard and the main board is securely made. The header pin connectors are not keyed
 | in any way, so it is very important to double-check the orientation of the daughterboard as it
-| plugs into the main board – visual cues will be included on the top silkscreen layer of the
+| plugs into the main board - visual cues will be included on the top silkscreen layer of the
 | daughterboard to reduce the risk of misalignment. The user will also need to plug the PIR sensor
 | into its corresponding connector on the daughterboard and the additional sensor to the STEMMA
 | QT port if it is being used. It is never okay to hot plug any part of the system.
@@ -20,7 +20,7 @@ specification for power delivery (5 Vdc, 2.5 W max).
 When 5V is supplied to the main board, its buck regulator will begin ramping up its output
 to produce a stable 3.3Vdc, which all logic runs from. The regulator begins switching after 50 μs
 and output voltage rises at about 25 mV / μs, yielding an approximate turn-on time of 0.2 ms.
-Because our system’s operation is all derived from the 3.3V supply, there is no need to sequence
+Because our system's operation is all derived from the 3.3V supply, there is no need to sequence
 delivery of varying voltages.
 
 After the 3.3V supply has stabilized, the digital ICs each have their own respective
